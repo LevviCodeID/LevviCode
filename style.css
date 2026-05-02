@@ -140,12 +140,49 @@ body.dark-mode .nav-link.active::after {
     box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
   }
 }
+
+/* ========== HERO SECTION (TIDAK TERLALU BESAR) ========== */
 .hero-section {
-  background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.05), rgba(59, 130, 246, 0.01), transparent 70%);
+  background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.06), rgba(59, 130, 246, 0.02), transparent 70%);
   border: 1px solid rgba(79, 70, 229, 0.2);
-  padding: 7rem 0 3rem;
+  padding: 7rem 0 4rem;
   margin-bottom: 0;
+  /* min-height dihapus, tidak perlu full screen */
 }
+.hero-section .container {
+  max-width: 1100px;
+}
+
+/* Desktop: sedikit perbesar teks (opsional, masih nyaman) */
+@media (min-width: 992px) {
+  .hero-section .display-3 {
+    font-size: 3.2rem !important;  /* tidak 3.5 rem, lebih kecil */
+  }
+  .hero-section .lead {
+    font-size: 1.15rem !important;
+  }
+}
+
+/* Tablet & Mobile */
+@media (max-width: 991px) {
+  .hero-section {
+    padding: 6rem 0 3rem;
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 5rem 0 2.5rem;
+  }
+  .hero-section .display-3 {
+    font-size: 2.2rem !important;
+  }
+  .hero-section .lead {
+    font-size: 1rem !important;
+  }
+}
+/* ========== END HERO ========== */
+
 section:not(#home) {
   border: none !important;
   box-shadow: none !important;
@@ -323,38 +360,19 @@ body.dark-mode .placeholder-wave {
   max-width: 1100px;
 }
 @media (max-width: 768px) {
-  .hero-section {
-    padding: 6rem 0 2rem;
-    text-align: center;
-  }
-  .hero-section .d-flex.gap-3 {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem !important;
-  }
-  .hero-section .btn-neon,
-  .hero-section .btn-outline-light {
-    width: 100%;
-    max-width: 260px;
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
-  }
-  .display-3 { font-size: 1.9rem !important; }
+  section:not(#home) { padding: 2rem 0 !important; }
   .display-6 { font-size: 1.2rem !important; }
-  .lead { font-size: 0.95rem !important; }
   .section-title { font-size: 1.5rem !important; }
   .project-card h4 { font-size: 1.2rem; }
   .project-icon-wrapper i { font-size: 2.8rem !important; }
   .skill-badge { padding: 0.5rem 1.2rem; font-size: 0.8rem; }
   .contact-icon { padding: 0.6rem 1rem; font-size: 0.9rem; }
-  section:not(#home) { padding: 2rem 0 !important; }
   .skills-track { gap: 0.8rem; }
   .glass-card { padding: 1.2rem !important; }
   .about-card-mobile { padding: 1.2rem; }
 }
 @media (max-width: 576px) {
   .navbar-brand { font-size: 1.4rem; }
-  .hero-section { padding-top: 5rem; }
 }
 .navbar-toggler-icon {
   background-image: none;
@@ -466,14 +484,14 @@ body.dark-mode .badge-cool {
 .typing-wrapper {
   display: inline-flex;
   align-items: center;
-  justify-content: center;   /* selalu di tengah */
+  justify-content: center;
   flex-wrap: wrap;
-  width: 100%;               /* agar mengambil lebar penuh di mobile */
+  width: 100%;
 }
 #typed-text {
   display: inline-block;
   min-width: 200px;
-  text-align: center;        /* teks dalam span juga center */
+  text-align: center;
   white-space: nowrap;
 }
 #typed-text::after {
