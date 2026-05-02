@@ -37,7 +37,6 @@ body.dark-mode {
   z-index: 1000;
   padding: 1rem 0;
 }
-/* Saat menu mobile terbuka, langsung solid */
 .navbar.menu-open {
   background: rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(14px);
@@ -462,16 +461,19 @@ body.dark-mode .badge-cool {
   color: #c084fc;
   border-color: rgba(168, 85, 247, 0.4);
 }
+
+/* ========== TYPING EFFECT (CENTER) ========== */
 .typing-wrapper {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;   /* selalu di tengah */
   flex-wrap: wrap;
+  width: 100%;               /* agar mengambil lebar penuh di mobile */
 }
 #typed-text {
   display: inline-block;
   min-width: 200px;
-  text-align: left;
+  text-align: center;        /* teks dalam span juga center */
   white-space: nowrap;
 }
 #typed-text::after {
@@ -485,10 +487,7 @@ body.dark-mode .badge-cool {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
-@media (max-width: 768px) {
-  .typing-wrapper { justify-content: center; }
-  #typed-text { min-width: 180px; }
-}
+
 .project-icon-wrapper {
   display: flex;
   justify-content: center;
