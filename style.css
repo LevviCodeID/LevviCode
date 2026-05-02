@@ -8,7 +8,7 @@ html, body {
   width: 100%;
 }
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #f5f7fb;
   background-image: 
     linear-gradient(to right, #e2e8f0 1px, transparent 1px),
@@ -36,6 +36,18 @@ body.dark-mode {
   width: 100%;
   z-index: 1000;
   padding: 1rem 0;
+}
+/* Saat menu mobile terbuka, langsung solid */
+.navbar.menu-open {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+}
+body.dark-mode .navbar.menu-open {
+  background: rgba(10, 10, 12, 0.95) !important;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.5);
 }
 .navbar.scrolled {
   background: rgba(255, 255, 255, 0.8);

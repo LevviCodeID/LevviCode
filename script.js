@@ -84,6 +84,9 @@
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     const sections = document.querySelectorAll('section[id], footer[id]');
     const navbar = document.querySelector('.navbar');
+    const navbarCollapse = document.getElementById('navbarMain');
+    
+    // Update active menu berdasarkan scroll
     function updateActive() {
       let current = '';
       const scrollPos = window.scrollY + 120;
@@ -98,27 +101,44 @@
       });
       if (!current && window.scrollY < 150) document.querySelector('.nav-link[href="#home"]')?.classList.add('active');
     }
+    
     window.addEventListener('scroll', () => {
       updateActive();
       if (window.scrollY > 20) navbar.classList.add('scrolled');
       else navbar.classList.remove('scrolled');
     });
+
+    // Auto-close navbar collapse ketika link di klik
     navLinks.forEach(link => {
       link.addEventListener('click', function(e) {
         if (this.getAttribute('href')?.startsWith('#')) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          const bsCollapse = document.querySelector('.navbar-collapse.show');
-          if (bsCollapse) bootstrap.Collapse.getInstance(bsCollapse)?.hide();
+          // Tutup menu mobile (jika sedang terbuka)
+          if (navbarCollapse.classList.contains('show')) {
+            const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+            if (bsCollapse) bsCollapse.hide();
+          }
         }
       });
     });
+
+    // Event untuk menambah/menghapus class menu-open saat collapse dibuka/tutup
+    navbarCollapse.addEventListener('show.bs.collapse', () => {
+      navbar.classList.add('menu-open');
+    });
+    navbarCollapse.addEventListener('hidden.bs.collapse', () => {
+      navbar.classList.remove('menu-open');
+    });
+
     updateActive();
     if (window.location.hash) {
       const hashEl = document.querySelector(window.location.hash);
       if (hashEl) setTimeout(() => hashEl.scrollIntoView({ behavior: 'smooth' }), 100);
     }
+
+    // Theme toggle
     const toggleBtn = document.getElementById('themeToggle');
     const icon = document.getElementById('themeIcon');
     const savedTheme = localStorage.getItem('levvi-theme');
@@ -146,6 +166,7 @@
       }
     });
 
+    // Contact form
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       contactForm.addEventListener('submit', (e) => {
