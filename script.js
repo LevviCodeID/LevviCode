@@ -1,9 +1,4 @@
 (function() {
-  AOS.init({
-    once: true,
-    offset: 50
-  });
-
   const skeleton = document.getElementById('skeleton-wrapper');
   const content = document.getElementById('content-wrapper');
   setTimeout(() => {
@@ -91,6 +86,7 @@
     const navbar = document.querySelector('.navbar');
     const navbarCollapse = document.getElementById('navbarMain');
     
+    // Update active menu berdasarkan scroll
     function updateActive() {
       let current = '';
       const scrollPos = window.scrollY + 120;
@@ -112,12 +108,14 @@
       else navbar.classList.remove('scrolled');
     });
 
+    // Auto-close navbar collapse ketika link di klik
     navLinks.forEach(link => {
       link.addEventListener('click', function(e) {
         if (this.getAttribute('href')?.startsWith('#')) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Tutup menu mobile (jika sedang terbuka)
           if (navbarCollapse.classList.contains('show')) {
             const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
             if (bsCollapse) bsCollapse.hide();
@@ -126,6 +124,7 @@
       });
     });
 
+    // Event untuk menambah/menghapus class menu-open saat collapse dibuka/tutup
     navbarCollapse.addEventListener('show.bs.collapse', () => {
       navbar.classList.add('menu-open');
     });
@@ -139,6 +138,7 @@
       if (hashEl) setTimeout(() => hashEl.scrollIntoView({ behavior: 'smooth' }), 100);
     }
 
+    // Theme toggle
     const toggleBtn = document.getElementById('themeToggle');
     const icon = document.getElementById('themeIcon');
     const savedTheme = localStorage.getItem('levvi-theme');
@@ -166,6 +166,7 @@
       }
     });
 
+    // Contact form
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       contactForm.addEventListener('submit', (e) => {
